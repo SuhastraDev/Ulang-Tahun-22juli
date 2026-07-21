@@ -1,0 +1,70 @@
+:root {
+  color: #fff1d6;
+  background: #141827;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  min-width: 320px;
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  min-height: 100dvh;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(246, 199, 111, 0.12), transparent 24rem),
+    linear-gradient(180deg, #141827 0%, #2c2038 100%);
+}
+
+#app {
+  display: grid;
+  place-items: center;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
+    env(safe-area-inset-left);
+}
+
+#game-shell {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100vw;
+  height: 100dvh;
+  max-width: 430px;
+  margin: 0 auto;
+  background: #141827;
+}
+
+#game-root {
+  width: 100%;
+  height: 100%;
+}
+
+canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  image-rendering: pixelated;
+  touch-action: none;
+}
+
+noscript {
+  position: fixed;
+  inset: auto 16px 16px;
+  color: #fff1d6;
+  background: #2c2038;
+  padding: 12px;
+}
