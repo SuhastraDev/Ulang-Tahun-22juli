@@ -3,7 +3,6 @@ import { AudioManager } from '../audio/AudioManager.js';
 import { backgroundAssets } from '../data/assets.js';
 import { GAME_HEIGHT, GAME_WIDTH, colorText, palette } from '../data/gameConfig.js';
 import { gameState } from '../state/GameState.js';
-import { AudioToggle } from '../ui/AudioToggle.js';
 import { ChoiceMenu } from '../ui/ChoiceMenu.js';
 import { DialogBox } from '../ui/DialogBox.js';
 import { InventoryHud } from '../ui/InventoryHud.js';
@@ -25,7 +24,6 @@ export class OpeningScene extends Phaser.Scene {
     this.drawCinema();
     this.drawCharacters();
     this.inventoryHud = new InventoryHud(this, gameState);
-    this.audioToggle = new AudioToggle(this, gameState);
     this.dialogBox = new DialogBox(this);
     this.choiceMenu = new ChoiceMenu(this);
     this.timerBar = new TimerBar(this);
@@ -121,8 +119,7 @@ export class OpeningScene extends Phaser.Scene {
       .setOrigin(0.5);
 
     button.on('pointerdown', () => {
-      this.audio.unlock();
-      this.time.delayedCall(100, () => this.audio.playAmbience('dark'));
+      this.audio.unlock(() => this.audio.playAmbience('dark'));
       button.destroy();
       label.destroy();
       this.introCopy?.forEach((node) => node.destroy());

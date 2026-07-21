@@ -3,7 +3,6 @@ import { AudioManager } from '../audio/AudioManager.js';
 import { backgroundAssets } from '../data/assets.js';
 import { GAME_HEIGHT, GAME_WIDTH, colorText, palette } from '../data/gameConfig.js';
 import { gameState } from '../state/GameState.js';
-import { AudioToggle } from '../ui/AudioToggle.js';
 import { ChoiceMenu } from '../ui/ChoiceMenu.js';
 import { DialogBox } from '../ui/DialogBox.js';
 import { InventoryHud } from '../ui/InventoryHud.js';
@@ -19,7 +18,6 @@ export class StorySceneBase extends Phaser.Scene {
     this.drawCoverBackground(backgroundKey);
     this.drawAtmosphere(overlayAlpha);
     this.inventoryHud = new InventoryHud(this, gameState);
-    this.audioToggle = new AudioToggle(this, gameState);
     this.dialogBox = new DialogBox(this);
     this.choiceMenu = new ChoiceMenu(this);
     this.timerBar = new TimerBar(this);

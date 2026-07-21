@@ -6,14 +6,18 @@ export class AudioManager {
     this.scene = scene;
   }
 
-  unlock() {
+  unlock(onEnabled) {
     if (this.scene.sound.locked) {
-      this.scene.sound.once('unlocked', () => this.enable());
+      this.scene.sound.once('unlocked', () => {
+        this.enable();
+        onEnabled?.();
+      });
       this.scene.sound.unlock();
       return;
     }
 
     this.enable();
+    onEnabled?.();
   }
 
   enable() {
