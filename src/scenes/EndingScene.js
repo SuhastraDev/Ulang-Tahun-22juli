@@ -147,10 +147,25 @@ export class EndingScene extends StorySceneBase {
     const media = realMediaAssets.videos[this.videoIndex % realMediaAssets.videos.length];
     this.videoIndex += 1;
 
-    if (!media || !this.cache.video.exists(media.key)) {
+    if (!media) {
       return;
     }
 
+    this.clearScreenMedia();
+    this.isVideoPlaying = true;
+
+    if (!this.cache.video.exists(media.key)) {
+      this.load.video(media.key, `/assets/${media.path}`, 'loadeddata', false, false);
+      this.load.once(`filecomplete-video-${media.key}`, () => this.showLoadedVideo(media));
+      this.load.start();
+      this.caption.setText(`Memuat ${media.caption}...`);
+      return;
+    }
+
+    this.showLoadedVideo(media);
+  }
+
+  showLoadedVideo(media) {
     this.clearScreenMedia();
     this.isVideoPlaying = true;
     const video = this.add.video(GAME_WIDTH / 2, 222, media.key).setDepth(11);

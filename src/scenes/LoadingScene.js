@@ -26,9 +26,6 @@ export class LoadingScene extends Phaser.Scene {
       this.load.image(asset.key, asset.path);
     });
 
-    realMediaAssets.videos.forEach((asset) => {
-      this.load.video(asset.key, asset.path, 'loadeddata', false, false);
-    });
   }
 
   create() {
